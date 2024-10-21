@@ -43,6 +43,26 @@ const musicList = [
 
 const rootRender = document.getElementById('root');
 
+let songImageCreator = (trackImageSource) => {
+    element = document.createElement('img');
+    element.src = trackImageSource;
+    return element;
+}
+
+let songCreator = (inputTrack) => {
+    const element = document.createElement('li');
+
+    const trackImgElement = songImageCreator(inputTrack.imageSource)
+
+    trackSongElement = document.createElement('audio');
+    trackSongElement.setAttribute('controls', '');
+    trackSongElement.src = inputTrack.songSource;
+
+    element.append(trackImgElement, inputTrack.title, trackSongElement);
+    return element;
+}
+
+
 for (let i = 0; i < musicList.length; i++) {
     const playList = musicList[i];
 
@@ -55,13 +75,9 @@ for (let i = 0; i < musicList.length; i++) {
 
     for (let j = 0; j < playList.tracks.length; j++) {
         const track = playList.tracks[j];
-        const trackElement = document.createElement('li');
-        trackImgElement = document.createElement('img');
-        trackImgElement.src = track.imageSource;
-        trackSongElement = document.createElement('audio');
-        trackSongElement.setAttribute('controls', '');
-        trackSongElement.src = track.songSource;
-        trackElement.append(trackImgElement, track.title, trackSongElement);
+        
+        const trackElement = songCreator(track)
+
         tracksElement.append(trackElement);
     }
 
