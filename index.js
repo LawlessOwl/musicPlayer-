@@ -58,9 +58,14 @@ let songCreator = (inputTrack) => {
     trackSongElement.setAttribute('controls', '');
     trackSongElement.src = inputTrack.songSource;
 
-    element.append(trackImgElement, inputTrack.title, trackSongElement);
+    element.append(songImageCreator(inputTrack.imageSource), titleCreator(inputTrack), trackSongElement);
     return element;
 }
+
+let titleCreator = (inputTrack) => {
+    return inputTrack.artist + " - " + inputTrack.title;
+}
+
 
 
 for (let i = 0; i < musicList.length; i++) {
