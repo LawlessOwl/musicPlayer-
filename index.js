@@ -43,6 +43,41 @@ const musicList = [
 
 const rootRender = document.getElementById('root');
 
+let playListsComponent = (inputPlayLists) => {
+    for (let i = 0; i < inputPlayLists.length; i++) {
+        const playList = inputPlayLists[i];
+    
+        rootRender.append(playListComponent(playList));
+    }
+}
+
+let playListComponent = (inputPlayList) => {
+    const element = document.createElement('div');
+
+    const playListTitleElement = document.createElement('h2');
+    playListTitleElement.textContent = inputPlayList.title;
+
+    element.append(playListTitleElement, tracksComponent(inputPlayList.tracks)); 
+    
+    return element;
+}
+
+let tracksComponent = (inputTracks) => {
+    const element = document.createElement("ul");
+
+
+    for (let j = 0; j < inputTracks.length; j++) {
+        const track = inputTracks[j];
+        
+        const trackElement = songCreator(track)
+
+        element.append(trackElement);
+    }
+
+    return element
+    
+}
+
 let songImageCreator = (trackImageSource) => {
     element = document.createElement('img');
     element.src = trackImageSource;
@@ -66,26 +101,8 @@ let titleCreator = (inputTrack) => {
     return inputTrack.artist + " - " + inputTrack.title;
 }
 
+playListsComponent(musicList)
 
 
-for (let i = 0; i < musicList.length; i++) {
-    const playList = musicList[i];
 
-    const playListElement = document.createElement('div');
 
-    const playListTitleElement = document.createElement('h2');
-    playListTitleElement.textContent = playList.title;
-
-    const tracksElement = document.createElement("ul");
-
-    for (let j = 0; j < playList.tracks.length; j++) {
-        const track = playList.tracks[j];
-        
-        const trackElement = songCreator(track)
-
-        tracksElement.append(trackElement);
-    }
-
-    playListElement.append(playListTitleElement, tracksElement); 
-    rootRender.append(playListElement);
-}
