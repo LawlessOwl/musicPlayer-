@@ -43,16 +43,21 @@ const musicList = [
 
 const rootRender = document.getElementById('root');
 
+
 let playListsComponent = (inputPlayLists) => {
+    const element = document.createElement('div');
+
     for (let i = 0; i < inputPlayLists.length; i++) {
         const playList = inputPlayLists[i];
     
-        rootRender.append(playListComponent(playList));
+        element.append(playListComponent(playList));
     }
+
+    return element
 }
 
 let playListComponent = (inputPlayList) => {
-    const element = document.createElement('div');
+    const element = createElementWithClass('div', ['playList']);
 
     const playListTitleElement = document.createElement('h2');
     playListTitleElement.textContent = inputPlayList.title;
@@ -87,8 +92,6 @@ let songImageCreator = (trackImageSource) => {
 let songCreator = (inputTrack) => {
     const element = document.createElement('li');
 
-    const trackImgElement = songImageCreator(inputTrack.imageSource)
-
     trackSongElement = document.createElement('audio');
     trackSongElement.setAttribute('controls', '');
     trackSongElement.src = inputTrack.songSource;
@@ -98,10 +101,24 @@ let songCreator = (inputTrack) => {
 }
 
 let titleCreator = (inputTrack) => {
-    return inputTrack.artist + " - " + inputTrack.title;
+    return `${hotTracksElement(inputTrack) + " "}${inputTrack.artist} - ${inputTrack.title}`;
 }
 
-playListsComponent(musicList)
+let hotTracksElement = (inputTrack) => {
+   return inputTrack.isHot === true ? "🔥" : "";
+}
+
+let createElementWithClass = (tagName, classes = []) => {
+    const element = document.createElement(tagName)
+    classes.forEach(cl => {
+        element.classList.add(cl)
+    });
+    return element;
+}
+
+const playListsElement = playListsComponent(musicList)
+
+rootRender.append(playListsElement)
 
 
 
