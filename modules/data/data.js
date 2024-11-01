@@ -1,4 +1,4 @@
-export const musicList = [
+export let musicList = [
     {
         id: 1,
         title: "OP",
@@ -40,3 +40,8 @@ export const musicList = [
         ]
     }
 ];
+
+
+export const deletePlayList = (id) => {
+    musicList = musicList.filter(p => p.id !== id)
+}
