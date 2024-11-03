@@ -41,7 +41,14 @@ export let musicList = [
     }
 ];
 
+const observers = []
+
 
 export const deletePlayList = (id) => {
     musicList = musicList.filter(p => p.id !== id)
+    observers.forEach((observer) => observer());
+}
+
+export const subscribe = (observer) => {
+    observers.push(observer)
 }

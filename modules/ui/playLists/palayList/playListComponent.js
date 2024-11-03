@@ -1,4 +1,3 @@
-import { refresh } from "../../../../index.js";
 import { deletePlayList } from "../../../data/data.js";
 import { createElementWithClass } from "./tracks/classCreator/createElementWithClass.js";
 import { tracksComponent } from "./tracks/tracksComponent.js";
@@ -15,7 +14,6 @@ export let playListComponent = (inputPlayList) => {
     deletePlaylistButton.append('❌')
     deletePlaylistButton.addEventListener('click', () => {
         deletePlayList(inputPlayList.id)
-        refresh()
     })
 
     element.append(deletePlaylistButton ,playListTitleElement, tracksComponent(inputPlayList.tracks));
