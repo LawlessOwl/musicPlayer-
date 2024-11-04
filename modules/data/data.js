@@ -49,6 +49,14 @@ export const deletePlayList = (id) => {
     observers.forEach((observer) => observer());
 }
 
+export const addPlaylist = () => {
+    musicList.push({
+        id: new Date.now(),
+        title: "NEW PLAYLIST",
+        tracks: [ssssssssssss]
+    })
+}
+
 export const subscribe = (observer) => {
     observers.push(observer)
 }
