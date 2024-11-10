@@ -41,22 +41,48 @@ export let musicList = [
     }
 ];
 
+export let isDialogOpen = { 
+    value: false,
+    newTitle: '',
+};
+
+export const setNewTitle = (title) => {
+    isDialogOpen.newTitle = title
+    //emit()
+}
+
+export const showEditDialog = () => {
+    isDialogOpen.value = true
+    emit()
+}
+
+export const closeEditDialog = () => {
+    isDialogOpen.value = false
+    emit()
+}
+
 const observers = []
 
 
 export const deletePlayList = (id) => {
     musicList = musicList.filter(p => p.id !== id)
-    observers.forEach((observer) => observer());
+    emit()
 }
 
 export const addPlaylist = () => {
     musicList.push({
-        id: new Date.now(),
-        title: "NEW PLAYLIST",
-        tracks: [ssssssssssss]
+        id:  Date.now(),
+        title: isDialogOpen.newTitle,
+        tracks: []
     })
+    emit()
 }
 
 export const subscribe = (observer) => {
     observers.push(observer)
+    emit()
+}
+
+const emit = () => {
+    observers.forEach((observer) => observer());
 }

@@ -1,4 +1,4 @@
-import { addPlaylist } from "../../data/data.js";
+import { addPlaylist, showEditDialog } from "../../data/data.js";
 import { createElementWithClass } from "../playLists/palayList/tracks/classCreator/createElementWithClass.js"
 
 export const addNewPlayListButton = () => {
@@ -8,7 +8,8 @@ export const addNewPlayListButton = () => {
     addNewPlayListButton.append('add new playlist');
     element.append(addNewPlayListButton);
     addNewPlayListButton.addEventListener('click', () => {
-        addPlaylist()
+        //addPlaylist()
+        showEditDialog()
     })
 
     return(element)
