@@ -48,7 +48,7 @@ export let isDialogOpen = {
 
 export const setNewTitle = (title) => {
     isDialogOpen.newTitle = title
-    //emit()
+    emit()
 }
 
 export const showEditDialog = () => {
@@ -70,11 +70,17 @@ export const deletePlayList = (id) => {
 }
 
 export const addPlaylist = () => {
+    if (isDialogOpen.newTitle === '') {
+        throw new Error("please input the playlist title");
+        
+    }
     musicList.push({
         id:  Date.now(),
         title: isDialogOpen.newTitle,
         tracks: []
     })
+    closeEditDialog();
+    isDialogOpen.newTitle = '';
     emit()
 }
 
