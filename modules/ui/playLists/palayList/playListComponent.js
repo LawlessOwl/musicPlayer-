@@ -1,4 +1,4 @@
-import { deletePlayList } from "../../../data/data.js";
+import { deletePlayList, showEditDialog } from "../../../data/data.js";
 import { createElementWithClass } from "./tracks/classCreator/createElementWithClass.js";
 import { tracksComponent } from "./tracks/tracksComponent.js";
 
@@ -16,7 +16,13 @@ export let playListComponent = (inputPlayList) => {
         deletePlayList(inputPlayList.id)
     })
 
-    element.append(deletePlaylistButton ,playListTitleElement, tracksComponent(inputPlayList.tracks));
+    const editPlayListButton = createElementWithClass("button")
+    editPlayListButton.append('✏️')
+    editPlayListButton.addEventListener('click', () => {
+        showEditDialog(inputPlayList.id)
+    })
+
+    element.append(deletePlaylistButton, editPlayListButton, playListTitleElement, tracksComponent(inputPlayList.tracks));
 
     return element;
 };

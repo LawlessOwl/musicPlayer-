@@ -1,4 +1,4 @@
-import { isDialogOpen } from "../../../data/data.js";
+import { addEditPlayListState } from "../../../data/data.js";
 import { createElementWithClass } from "../../playLists/palayList/tracks/classCreator/createElementWithClass.js"
 import { dialogButtonsElements } from "./dialogActionsComponent.js";
 import { dialogFormElement } from "./dialogFormComponent.js";
@@ -9,7 +9,7 @@ export let addEditPlayList = () => {
 
     element.append(dialogHeaderElement(), dialogFormElement(), dialogButtonsElements())
 
-  element.open = isDialogOpen.value;
+  element.open = addEditPlayListState.value;
 
     return element;
 } 

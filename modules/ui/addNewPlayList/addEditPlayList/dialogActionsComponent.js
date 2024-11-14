@@ -1,12 +1,12 @@
-import { addPlaylist, closeEditDialog, isDialogOpen } from "../../../data/data.js";
+import { addPlaylist, closeEditDialog, addEditPlayListState } from "../../../data/data.js";
 import { createElementWithClass } from "../../playLists/palayList/tracks/classCreator/createElementWithClass.js"
 
 export let dialogButtonsElements = () => {
     const element = createElementWithClass('div');
     
     const addPlayListButton = createElementWithClass('button');
-    addPlayListButton.append("Add playlist")
-    if (isDialogOpen.newTitle === '') {
+    addPlayListButton.append(addEditPlayListState.id ? "Save" : "Add playlist")
+    if (addEditPlayListState.newTitle === '') {
         addPlayListButton.disabled = true;
     }
     addPlayListButton.addEventListener('click', () => {

@@ -1,4 +1,4 @@
-import { isDialogOpen, setNewTitle } from "../../../data/data.js";
+import { addEditPlayListState, setNewTitle } from "../../../data/data.js";
 import { createElementWithClass } from "../../playLists/palayList/tracks/classCreator/createElementWithClass.js"
 
 export let dialogFormElement = () => {
@@ -13,7 +13,7 @@ export let dialogFormElement = () => {
         playListNemeInputElement.focus()
     }, 0)
 
-    playListNemeInputElement.value = isDialogOpen.newTitle
+    playListNemeInputElement.value = addEditPlayListState.newTitle
 
     const playListImageSourceElement = createElementWithClass('input');
 

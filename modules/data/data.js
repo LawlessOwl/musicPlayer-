@@ -41,23 +41,34 @@ export let musicList = [
     }
 ];
 
-export let isDialogOpen = { 
+export let addEditPlayListState = { 
     value: false,
     newTitle: '',
+    id: null,
 };
 
 export const setNewTitle = (title) => {
-    isDialogOpen.newTitle = title
+    addEditPlayListState.newTitle = title
     emit()
 }
 
-export const showEditDialog = () => {
-    isDialogOpen.value = true
+export const showEditDialog = (playlistId = null) => {
+    addEditPlayListState.value = true
+    if (playlistId) {
+        addEditPlayListState.id = playlistId;
+        const foundedPlaylists = musicList.find((p) => p.id === playlistId)
+        if (!foundedPlaylists) {
+            throw new Error('404')
+        }
+        addEditPlayListState.newTitle = foundedPlaylists.title
+    }
     emit()
 }
 
 export const closeEditDialog = () => {
-    isDialogOpen.value = false
+    addEditPlayListState.value = false
+    addEditPlayListState.id = null
+    addEditPlayListState.title = ''
     emit()
 }
 
@@ -70,17 +81,26 @@ export const deletePlayList = (id) => {
 }
 
 export const addPlaylist = () => {
-    if (isDialogOpen.newTitle === '') {
+    if (addEditPlayListState.newTitle === '') {
         throw new Error("please input the playlist title");
         
     }
-    musicList.push({
-        id:  Date.now(),
-        title: isDialogOpen.newTitle,
-        tracks: []
-    })
+
+    if (addEditPlayListState.id) {
+        const foundedPlaylists = musicList.find((p) => p.id === addEditPlayListState.id)
+        if (!foundedPlaylists) {
+            throw new Error('404')
+        }
+        foundedPlaylists.title =  addEditPlayListState.newTitle
+    } else {
+        musicList.push({
+            id:  Date.now(),
+            title: addEditPlayListState.newTitle,
+            tracks: []
+        })
+    }
     closeEditDialog();
-    isDialogOpen.newTitle = '';
+    addEditPlayListState.newTitle = '';
     emit()
 }
 
