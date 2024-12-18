@@ -7,14 +7,14 @@ export let musicList = [
                 artist: "ALI",
                 title: "LOST IN PARADISE",
                 isHot: true,
-                imageSource: "/musicPlayer-/src/img/lostInParadise.jpg",
+                imageSource: "./src/img/lostInParadise.jpg",
                 songSource: "./src/songs/Ali Lost In Paradise (Jujutsu Kaisen Ending Theme Song) (Feat. Aklo).mp3"
             },
             {
                 artist: "Kenshi Yonezu",
                 title: "KICK BACK",
                 isHot: true,
-                imageSource: "/musicPlayer-/src/img/kickBack.jpg",
+                imageSource: "./src/img/kickBack.jpg",
                 songSource: "./src/songs/kickBack.mp3"
             }
         ]
@@ -27,14 +27,14 @@ export let musicList = [
                 artist: "Dreamhop",
                 title: "Somewhere Elsewhere",
                 isHot: true,
-                imageSource: "/musicPlayer-/src/img/somewhereElsewhere.jpg",
+                imageSource: "./src/img/somewhereElsewhere.jpg",
                 songSource: "./src/songs/SomewhereElsewhere.mp3"
             },
             {
                 artist: "DOMO",
                 title: "Alone",
                 isHot: true,
-                imageSource: "/musicPlayer-/src/img/alone.jpg",
+                imageSource: "./src/img/alone.jpg",
                 songSource: "./src/songs/alone.mp3"
             }
         ]
@@ -44,11 +44,17 @@ export let musicList = [
 export let addEditPlayListState = { 
     value: false,
     newTitle: '',
+    newImage: '',
     id: null,
 };
 
 export const setNewTitle = (title) => {
     addEditPlayListState.newTitle = title
+    emit()
+}
+
+export const setNewAlbumImage = (image) => {
+    addEditPlayListState.newImage = image
     emit()
 }
 

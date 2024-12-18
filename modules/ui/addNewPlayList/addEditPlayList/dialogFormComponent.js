@@ -1,23 +1,26 @@
-import { addEditPlayListState, setNewTitle } from "../../../data/data.js";
+import { addEditPlayListState, setNewAlbumImage, setNewTitle } from "../../../data/data.js";
 import { createElementWithClass } from "../../playLists/palayList/tracks/classCreator/createElementWithClass.js"
 
 export let dialogFormElement = () => {
     const element = createElementWithClass('form');
     
-    const playListNemeInputElement = createElementWithClass('input');
-    playListNemeInputElement.addEventListener('input', () => {
-        setNewTitle(playListNemeInputElement.value)
+    const playListNameInputElement = createElementWithClass('input');
+    playListNameInputElement.addEventListener('input', () => {
+        setNewTitle(playListNameInputElement.value)
     })
 
     setTimeout(() => {
-        playListNemeInputElement.focus()
+        playListNameInputElement.focus()
     }, 0)
 
-    playListNemeInputElement.value = addEditPlayListState.newTitle
+    playListNameInputElement.value = addEditPlayListState.newTitle
 
     const playListImageSourceElement = createElementWithClass('input');
+    playListImageSourceElement.addEventListener('input', () => {
+        setNewAlbumImage(playListImageSourceElement.value)
+    })
 
-    element.append(playListNemeInputElement, playListImageSourceElement)
+    element.append(playListNameInputElement, playListImageSourceElement)
 
     return element;
 } 
